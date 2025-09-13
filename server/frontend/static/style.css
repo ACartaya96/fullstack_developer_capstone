@@ -124,3 +124,32 @@ img{
     text-align:center;
     box-shadow: 2px 2px 3px #999;  
 }
+
+.flexbox {
+    display: flex;
+    justify-content: space-between;  
+    align-items: flex-start;  
+    gap: 125px;                
+    margin: 0px auto;
+    max-width: 1000px;       
+  }
+  
+  .item {
+    flex: 1;
+  }
+
+  .item.left{
+    align-self: center;
+  }
+
+  .item.right{
+    color: #4285F4;
+    text-align: center;
+  }
+  
+  .divider {
+    width: 2px;
+    margin: 30px 20px;
+    background-color: #444;
+    align-self: stretch;      
+  }
