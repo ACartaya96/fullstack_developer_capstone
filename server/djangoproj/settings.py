@@ -33,13 +33,13 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "localhost",
     (
-        "https://alexanderca6-8000.theiadockernext-1-labs-prod-"
+        "https://alexanderca6-8000.theiadockernext-0-labs-prod-"
         "theiak8s-4-tor01.proxy.cognitiveclass.ai"
     ),
 ]
 CSRF_TRUSTED_ORIGINS = [
     (
-        "https://alexanderca6-8000.theiadockernext-1-labs-prod-"
+        "https://alexanderca6-8000.theiadockernext-0-labs-prod-"
         "theiak8s-4-tor01.proxy.cognitiveclass.ai"
     )
 ]
