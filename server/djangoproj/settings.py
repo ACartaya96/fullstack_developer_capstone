@@ -35,7 +35,7 @@ ALLOWED_HOSTS = [
     (
         "https://alexanderca6-8000.theiadockernext-0-labs-prod-"
         "theiak8s-4-tor01.proxy.cognitiveclass.ai"
-    ), ( "https://fullstack-developer-capstone-y7pw.onrender.com" )
+    ), ( "fullstack-developer-capstone-y7pw.onrender.com" )
 ]
 CSRF_TRUSTED_ORIGINS = [
     (
