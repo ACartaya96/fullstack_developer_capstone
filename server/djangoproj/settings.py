@@ -41,7 +41,7 @@ CSRF_TRUSTED_ORIGINS = [
     (
         "https://alexanderca6-8000.theiadockernext-0-labs-prod-"
         "theiak8s-4-tor01.proxy.cognitiveclass.ai"
-    ),( "fullstack-developer-capstone-y7pw.onrender.com" )
+    ),( "https://fullstack-developer-capstone-y7pw.onrender.com" )
     
 ]
 
