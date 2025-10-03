@@ -15,13 +15,7 @@ const reviews_data = JSON.parse(fs.readFileSync("reviews.json", 'utf8'));
 const dealerships_data = JSON.parse(fs.readFileSync("dealerships.json", 'utf8'));
 
 // Use MY_DATABASE_URL from .env (or system env)
-mongoose.connect(process.env.MY_DATABASE_URL, { 
-  dbName: "dealershipsDB",
-  retryWrites: true,
-  w: "majority",
-  appName: "BestCars-Cluster"
-});
-
+mongoose.connect(process.env.MY_DATABASE_URL);
 
 const Reviews = require('./review');
 
