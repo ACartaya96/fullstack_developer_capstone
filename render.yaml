@@ -7,7 +7,7 @@ services:
       pip install -r ./server/requirements.txt
       cd server/frontend && npm install && npm run build
       cd ..
-    startCommand: gunicorn backend.wsgi:application
+    startCommand: PYTHONPATH=./server gunicorn djangoproj.wsgi:application
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.0
