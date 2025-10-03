@@ -4,8 +4,9 @@ services:
     env: python
     plan: free
     buildCommand: |
-      pip install -r requirements.txt
-      cd frontend && npm install && npm run build && cd ..
+      pip install -r ./server/requirements.txt
+      cd frontend && npm install && npm run build
+      cd ..
     startCommand: gunicorn backend.wsgi:application
     envVars:
       - key: PYTHON_VERSION
