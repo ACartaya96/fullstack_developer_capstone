@@ -12,7 +12,7 @@ app.use(require('body-parser').urlencoded({ extended: false }));
 const reviews_data = JSON.parse(fs.readFileSync("reviews.json", 'utf8'));
 const dealerships_data = JSON.parse(fs.readFileSync("dealerships.json", 'utf8'));
 
-mongoose.connect(process.env.MY_DATABASE_URL, { 
+mongoose.connect(process.env.MONGO_URI, { 
   dbName: "dealershipsDB",
   retryWrites: true,
   w: "majority",
