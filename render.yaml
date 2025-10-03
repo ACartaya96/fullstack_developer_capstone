@@ -10,7 +10,7 @@ services:
     startCommand: gunicorn backend.wsgi:application
     envVars:
       - key: PYTHON_VERSION
-        value: 3.10
+        value: 3.10.0
       - key: DJANGO_SETTINGS_MODULE
         value: backend.settings
       # Add your secrets below, e.g. DATABASE_URL, SECRET_KEY, etc.
