@@ -6,6 +6,6 @@ python manage.py makemigrations --noinput
 python manage.py migrate --noinput
 python manage.py collectstatic --noinput
 
-python manage.py createsuperuser --username admin --email admin@bestcars --password password
+python manage.py createsuperuser --noinput
 
 exec "$@"
