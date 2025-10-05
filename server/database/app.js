@@ -1,6 +1,7 @@
 /*jshint esversion: 8 */
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config();
 const fs = require('fs');
 const cors = require('cors');
 const app = express();
