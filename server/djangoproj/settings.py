@@ -28,13 +28,7 @@ SECRET_KEY = "django-insecure-ccow$tz_=9%dxu4(0%^(z%nx32#s@(zt9$ih@)5l54yny)" "w
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = [
-    (
-        "https://alexanderca6-8000.theiadockernext-0-labs-prod-"
-        "theiak8s-4-tor01.proxy.cognitiveclass.ai"
-    ),
-    ("https://fullstack-developer-capstone-backend.onrender.com"),
-]
+CSRF_TRUSTED_ORIGINS = ["*"]
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [],
