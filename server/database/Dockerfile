@@ -11,6 +11,9 @@ ADD data/reviews.json .
 COPY . .
 RUN npm install
 
+RUN docker build . -t nodeapp
+RUN docker-compose up 
+
 EXPOSE 3030
 
 CMD [ "node", "app.js" ]
