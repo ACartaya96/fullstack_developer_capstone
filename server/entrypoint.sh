@@ -6,5 +6,10 @@ python manage.py makemigrations --noinput
 python manage.py migrate --noinput
 python manage.py collectstatic --noinput
 
+if [[ $CREATE_SUPERUSER == "True" ]]; then
+    echo "Creating superuser."
+    python manage.py createsuperuser --noinput
+fi
+
 
 exec "$@"
