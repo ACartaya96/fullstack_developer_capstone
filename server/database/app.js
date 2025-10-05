@@ -5,7 +5,7 @@ require('dotenv').config();
 const fs = require('fs');
 const cors = require('cors');
 const app = express();
-const port = 3030;
+const port = process.env.PORT || 3030;
 
 app.use(cors());
 app.use(require('body-parser').urlencoded({ extended: false }));
@@ -14,29 +14,41 @@ app.use(require('body-parser').urlencoded({ extended: false }));
 const reviews_data = JSON.parse(fs.readFileSync("./data/reviews.json", 'utf8'));
 const dealerships_data = JSON.parse(fs.readFileSync("./data/dealerships.json", 'utf8'));
 
-mongoose.connect(process.env.MONGO_URI, {
-  dbName: 'dealershipsDB',
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
-
-
 const Reviews = require('./review');
-
 const Dealerships = require('./dealership');
 
-try {
-  Reviews.deleteMany({}).then(()=>{
-    Reviews.insertMany(reviews_data['reviews']);
-  });
-  Dealerships.deleteMany({}).then(()=>{
-    Dealerships.insertMany(dealerships_data['dealerships']);
-  });
-  
-} catch (error) {
-  res.status(500).json({ error: 'Error fetching documents' });
+const dbUri = process.env.MY_DATABASE_URL || process.env.MONGO_URI;
+if (!dbUri) {
+  console.error('Missing MongoDB URI. Set MY_DATABASE_URL or MONGO_URI in environment.');
+  process.exit(1);
 }
+
+(async () => {
+  try {
+    console.log('Connecting to MongoDB...');
+    await mongoose.connect(dbUri, { dbName: 'dealershipsDB' });
+    console.log('MongoDB connected');
+
+    try {
+      await Reviews.deleteMany({});
+      await Reviews.insertMany(reviews_data.reviews);
+      console.log('Reviews seeded');
+    } catch (err) {
+      console.error('Error seeding reviews:', err);
+    }
+
+    try {
+      await Dealerships.deleteMany({});
+      await Dealerships.insertMany(dealerships_data.dealerships);
+      console.log('Dealerships seeded');
+    } catch (err) {
+      console.error('Error seeding dealerships:', err);
+    }
+
+  } catch (err) {
+    console.error('Error connecting to MongoDB:', err);
+  }
+})();
 
 
 // Express route to home
@@ -126,5 +138,5 @@ app.post('/insert_review', express.raw({ type: '*/*' }), async (req, res) => {
 
 // Start the Express server
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on port ${port}`);
 });
