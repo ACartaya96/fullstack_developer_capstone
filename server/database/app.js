@@ -6,29 +6,30 @@ const cors = require('cors');
 // Load environment variables from .env
 require('dotenv').config();
 const app = express();
-const port = 3030;
+const port = process.env.PORT || 3030;
 
 app.use(cors());
 app.use(require('body-parser').urlencoded({ extended: false }));
 
+
 const reviews_data = JSON.parse(fs.readFileSync("reviews.json", 'utf8'));
 const dealerships_data = JSON.parse(fs.readFileSync("dealerships.json", 'utf8'));
 
-// Use MY_DATABASE_URL from .env (or system env)
-mongoose.connect(process.env.MY_DATABASE_URL);
+mongoose.connect("mongodb://mongo_db:27017/",{'dbName':'dealershipsDB'});
+
 
 const Reviews = require('./review');
 
 const Dealerships = require('./dealership');
 
 try {
-  Reviews.deleteMany({}).then(() => {
-    Reviews.insertMany(reviews_data.reviews);
+  Reviews.deleteMany({}).then(()=>{
+    Reviews.insertMany(reviews_data['reviews']);
   });
-  Dealerships.deleteMany({}).then(() => {
-    Dealerships.insertMany(dealerships_data.dealerships);
+  Dealerships.deleteMany({}).then(()=>{
+    Dealerships.insertMany(dealerships_data['dealerships']);
   });
-
+  
 } catch (error) {
   res.status(500).json({ error: 'Error fetching documents' });
 }
