@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: nodeapp
+    env: docker
+    plan: free
+    repo: https://github.com/ACartaya96/fullstack_developer_capstone/server/database
+    dockerfilePath: ./Dockerfile
+    buildFilter:
+      paths:
+        - Dockerfile
+        - package.json
+        - app.js
+        - review.js
+        - dealership.js
+        - data/**
+    envVars:
+      - key: MONGO_URL
+        value: mongodb://mongo-db:27017
+
+  - type: pserv
+    name: mongo-db
+    env: docker
+    image: mongo:latest
+    plan: free
